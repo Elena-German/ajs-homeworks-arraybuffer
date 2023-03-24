@@ -20,6 +20,8 @@ export default class Stoned extends Character {
   }
 
   set stoned(flag) {
+    // такой вариант не проходит проверку линтера
+    // flag ? this._stoned = true : this._stoned = false;
     if (flag) {
       this._stoned = true;
     } else { this._stoned = false; }
