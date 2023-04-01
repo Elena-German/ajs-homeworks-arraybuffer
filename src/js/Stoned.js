@@ -2,32 +2,40 @@
 import Character from './Character';
 
 export default class Stoned extends Character {
+  #attack = 0;
+  #distance = 1;
+  #stoned = false;
+  #realAttack = 0;
+
   get attack() {
-    return this._attack;
-  }
-
-  set attack(distance) {
-    if (distance < 1) {
-      this._attack = 10;
-    } else if (distance >= 1 && distance < 11) {
-      this._attack = (10 * (110 - (distance * 10))) / 100;
-      if (this._stoned) {
-        this._attack -= (Math.log2(distance) * 5);
-      }
-    } else {
-      this._attack = 0;
+    if (this.#distance == 1) {
+      this.#attack = this.#realAttack;
     }
+    if (this.#distance > 1 && this.#distance < 11) {
+      this.#attack = (this.#realAttack * (110 - (this.#distance * 10))) / 100;
+      if (this.#stoned) {
+        this.#attack = this.#attack - (Math.log2(this.#distance) * 5);
+      }
+    } else if (this.#distance >= 11) {
+      this.#attack = 0;
+    }
+    return this.#attack;
   }
 
-  set stoned(flag) {
-    // такой вариант не проходит проверку линтера
-    // flag ? this._stoned = true : this._stoned = false;
-    if (flag) {
-      this._stoned = true;
-    } else { this._stoned = false; }
+  set attack(attack) {
+    this.#realAttack = attack;
+    this.#attack = attack;
+  }
+
+  set stoned(stoned) {
+    this.#stoned = Boolean(stoned);
   }
 
   get stoned() {
-    return this._stoned;
+    return this.#stoned;
+  }
+
+  set distance(distance) {
+    this.#distance = Math.max(1, distance);
   }
 }

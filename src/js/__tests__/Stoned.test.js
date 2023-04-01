@@ -6,8 +6,7 @@ test.each([
   [0, '0', 10],
 ])('атака без дурмана на ячейку № %i - ', (distance, description, expected) => {
   const player = new Daemon('leo');
-  player.stoned = false;
-  player.attack = distance;
+  player.distance = distance;
   expect(player.attack).toBe(expected);
 });
 
@@ -18,12 +17,11 @@ test.each([
 ])('атака c дурманом на ячейку № %i - ', (distance, description, expected) => {
   const player = new Daemon('leo');
   player.stoned = true;
-  player.attack = distance;
+  player.distance = distance;
   expect(player.attack).toBe(expected);
 });
 
-test('тест геттера stoned', () => {
+test('тестирование геттера stoned', () => {
   const player = new Daemon('leo');
-  player.stoned = true;
-  expect(player.stoned).toBe(true);
+  expect(player.stoned).toBe(false);
 });

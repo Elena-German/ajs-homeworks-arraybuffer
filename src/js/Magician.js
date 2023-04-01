@@ -1,8 +1,9 @@
 import Stoned from './Stoned';
 
 export default class Magician extends Stoned {
-  constructor(name, type = 'Magician') {
-    super(name, type);
-    this.defence = 40; // защита
+  constructor(name) {
+    super(name, 'Magician');
+    this.defence = 40;
+    this.attack = 10;
   }
 }
