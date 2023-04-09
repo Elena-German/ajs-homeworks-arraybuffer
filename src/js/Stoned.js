@@ -38,4 +38,11 @@ export default class Stoned extends Character {
   set distance(distance) {
     this.#distance = Math.max(1, distance);
   }
+
+  levelUp() {
+    const { distance } = this;
+    this.distance = 1;
+    super.levelUp();
+    this.distance = distance;
+  }
 }

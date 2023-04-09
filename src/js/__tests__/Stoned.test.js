@@ -25,3 +25,9 @@ test('тестирование геттера stoned', () => {
   const player = new Daemon('leo');
   expect(player.stoned).toBe(false);
 });
+
+test('тестирование метода levelUp', () => {
+  const player = new Daemon('leo');
+  player.levelUp();
+  expect(player.attack).toBe(12);
+});
